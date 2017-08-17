@@ -41,8 +41,6 @@
     "@angular/language-service": "^4.3.5",
     "@compodoc/compodoc": "^1.0.0-beta.14",
     "@types/jasmine": "2.5.45",
-    "@types/moment": "^2.13.0",
-    "@types/moment-timezone": "^0.2.34",
     "@types/node": "^6.0.87",
     "codelyzer": "~3.0.1",
     "jasmine-core": "~2.6.2",
