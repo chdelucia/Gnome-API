@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   inhabitants: Brastlewark[] = [];
   pagedInhabitants: Brastlewark[] = [];
   filteredInhabitants: Brastlewark[] = [];
-  jobs = [];
+  jobs : string[] = [];
   pager: any = {};
   totalPages:number = 0;
   jobsActivate : boolean = false;
