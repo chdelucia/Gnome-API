@@ -1,4 +1,5 @@
-<section id="inhabitants" *ngIf="pagedInhabitants; else loading">
+<div *ngFor="let job of jobs">{{job}}</div>
+<section id="inhabitants" *ngIf="pagedInhabitants.length; else loading">
   <div class="container">
     <!-- Page Heading -->
     <h1 class="my-4">Brastlewark

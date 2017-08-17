@@ -4,7 +4,7 @@ import { BrastlewarkService }                     from './../../shared/services/
 import { PagerService }                       from './../../shared/services/pager.service';
 import { Observable }                         from 'rxjs/Observable';
 import { environment }                        from './../../../../environments/environment';
-import { BrastlewarkObject }                      from './../../shared/services/brastlewark';
+import { Brastlewark }                      from './../../shared/services/brastlewark';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +13,9 @@ import { BrastlewarkObject }                      from './../../shared/services/
 })
 export class HomeComponent implements OnInit {
 
-  inhabitants = [];
-  pagedInhabitants = [];
+  inhabitants : Brastlewark[] = [];
+  pagedInhabitants : Brastlewark[] = [];
+  jobs = [];
   actualPage : number;
   pager: any = {};
 
@@ -33,20 +34,31 @@ export class HomeComponent implements OnInit {
           console.log(result);
           this.inhabitants = result.Brastlewark;
           this.setPage(this.actualPage);
+          this.listJobs();
       })
   }
 
 
-  renderCityData(result:BrastlewarkObject){ 
-      let verify = 0;
+  listJobs(){
+    this.inhabitants.map(item => {
+      item.professions.map(job => {
+        if (!this.jobs.includes(job.trim())){ 
+          this.jobs.push(job.trim())
+        }
+      })
+    })
+    debugger;
+    this.jobs = this.jobs.sort();
   }
+
+  
 
   /*
   * Look for a previous  inhabitans if exist in Storage
   */
   recoverDataFromStorage(){
       if (localStorage.getItem('Brastlewark') !== null) {
-        this.inhabitants.push(this.brastlewark.getLocalStorage());
+        this.inhabitants = this.brastlewark.getLocalStorage().Brastlewark;
       }
   }
 
