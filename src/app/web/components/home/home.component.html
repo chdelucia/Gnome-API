@@ -1,12 +1,17 @@
-<div *ngFor="let job of jobs">{{job}}</div>
+
 <section id="inhabitants" *ngIf="pagedInhabitants.length; else loading">
   <div class="container">
     <!-- Page Heading -->
     <h1 class="my-4">Brastlewark
       <small>inhabitants</small>
     </h1>
-    <div class="show-pagination text-right">
-      <small>Showing page {{pager.currentPage}} of {{pager.totalPages}}</small>
+    <div class="show-pagination">
+            <span>Filter by professions:</span> 
+            <select (change)="filterByProfession($event.target.value)">
+                <option> All </option>
+                <option *ngFor="let job of jobs" value="{{job}}">{{job}}</option>
+            </select>        
+      <small class="show-bc hidden-xs">Showing page {{pager.currentPage}} of {{pager.totalPages}}</small>
     </div>
     <div class="row">
       <div *ngFor="let inhabitant of pagedInhabitants" class="col-lg-4 col-sm-6 portfolio-item">
