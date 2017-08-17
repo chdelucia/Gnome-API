@@ -1,6 +1,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.3.
 
+This app Shows all inhabitants with a paginator and filters it by a profession.
+
 ## Install dependencies
 Run `npm install`
 
