@@ -15,16 +15,20 @@ export class HomeComponent implements OnInit {
 
   inhabitants: Brastlewark[] = [];
   pagedInhabitants: Brastlewark[] = [];
+  filteredInhabitants: Brastlewark[] = [];
   jobs = [];
   actualPage: number;
   pager: any = {};
+  totalPages:number = 0;
+  jobsActivate : boolean = false;
+
 
   constructor(private brastlewark: BrastlewarkService, private pagerService: PagerService) {
-    this.actualPage = 1;
+
   }
 
   ngOnInit() {
-    this.recoverDataFromStorage();
+    //this.recoverDataFromStorage();
     this.getInhabitants();
   }
 
@@ -33,7 +37,8 @@ export class HomeComponent implements OnInit {
       result => {
         console.log(result);
         this.inhabitants = result.Brastlewark;
-        this.setPage(this.actualPage);
+        this.totalPages = result.Brastlewark.length 
+        this.setPage(1);
         this.listJobs();
       })
   }
@@ -50,14 +55,17 @@ export class HomeComponent implements OnInit {
   }
 
   filterByProfession(value: string) {
-    this.pagedInhabitants = [];
+    this.filteredInhabitants = [];
     this.inhabitants.map(item => {
       item.professions.map(job => {
         if (job.trim() === value) {
-          this.pagedInhabitants.push(item);
+          this.filteredInhabitants.push(item);
         }
       })
     })
+    this.totalPages = this.filteredInhabitants.length
+    this.jobsActivate = true;
+    this.setPage(1);
   }
 
   /*
@@ -74,10 +82,10 @@ export class HomeComponent implements OnInit {
       return;
     }
     // get pager object from service
-    this.pager = this.pagerService.getPager(this.inhabitants.length, page);
+    this.pager = this.pagerService.getPager(this.totalPages, page);
 
     // get current page of items
-    this.pagedInhabitants = this.inhabitants.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.pagedInhabitants = this.jobsActivate ? this.filteredInhabitants.slice(this.pager.startIndex, this.pager.endIndex + 1) : this.inhabitants.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
 
