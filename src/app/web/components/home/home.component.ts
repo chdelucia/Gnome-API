@@ -35,7 +35,6 @@ export class HomeComponent implements OnInit {
   getInhabitants() {
     this.brastlewark.getInhabitants().subscribe(
       result => {
-        console.log(result);
         this.inhabitants = result.Brastlewark;
         this.totalPages = result.Brastlewark.length 
         this.setPage(1);
@@ -82,6 +81,9 @@ export class HomeComponent implements OnInit {
   recoverDataFromStorage() {
     if (localStorage.getItem('Brastlewark') !== null) {
       this.inhabitants = this.brastlewark.getLocalStorage().Brastlewark;
+      this.totalPages = this.inhabitants.length 
+      this.setPage(1);
+      this.listJobs();
     }
   }
 
