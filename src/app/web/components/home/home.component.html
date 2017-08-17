@@ -8,7 +8,7 @@
     <div class="show-pagination">
             <span>Filter by professions:</span> 
             <select (change)="filterByProfession($event.target.value)">
-                <option> All </option>
+                <option value="all"> All </option>
                 <option *ngFor="let job of jobs" value="{{job}}">{{job}}</option>
             </select>        
       <small class="show-bc hidden-xs">Showing page {{pager.currentPage}} of {{pager.totalPages}}</small>

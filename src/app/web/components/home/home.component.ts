@@ -56,6 +56,12 @@ export class HomeComponent implements OnInit {
 
   filterByProfession(value: string) {
     this.filteredInhabitants = [];
+
+    if(value === "all"){
+      this.totalPages = this.inhabitants.length
+      this.jobsActivate = false;
+    }
+    else{
     this.inhabitants.map(item => {
       item.professions.map(job => {
         if (job.trim() === value) {
@@ -65,6 +71,8 @@ export class HomeComponent implements OnInit {
     })
     this.totalPages = this.filteredInhabitants.length
     this.jobsActivate = true;
+    }
+
     this.setPage(1);
   }
 
