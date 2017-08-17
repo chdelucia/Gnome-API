@@ -1,0 +1,11 @@
+
+body {
+    padding-top: 34px;
+}
+
+@media (min-width: 992px) {
+    body {
+        padding-top: 36px;
+    }
+}
+
