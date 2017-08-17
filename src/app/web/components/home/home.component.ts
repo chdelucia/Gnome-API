@@ -13,36 +13,36 @@ import { BrastlewarkObject }                      from './../../shared/services/
 export class HomeComponent implements OnInit {
 
   inhabitants = [];
-
-  constructor( private weather: BrastlewarkService) { }
+  numberPerPage = 24;
+  actualPage : number;
+  constructor( private brastlewark: BrastlewarkService) {
+    this.actualPage = 0;
+   }
     
   ngOnInit() {
     this.recoverDataFromStorage();
-    this.getWeathers();
+    this.getInhabitants();
   }
 
-  getWeathers(){  
-      this.weather.getInhabitants().subscribe( 
+  getInhabitants(){  
+      this.brastlewark.getInhabitants().subscribe( 
         result => {
           console.log(result);
-          this.inhabitants = result.Brastlewark.slice(0,24);
+          this.inhabitants = result.Brastlewark.slice(this.actualPage * this.numberPerPage,this.numberPerPage);
       })
   }
 
 
-  /*
-  * Add temperature to city or create new city if not exist yet. weatherInfo = [ [city1..{},{}] , [city2] , [city3] ]
-  */
   renderCityData(result:BrastlewarkObject){ 
       let verify = 0;
   }
 
   /*
-  * Look for a previous weather temperatures if exist in Storage
+  * Look for a previous  inhabitans if exist in Storage
   */
   recoverDataFromStorage(){
       if (localStorage.getItem('Brastlewark') !== null) {
-        this.inhabitants.push(this.weather.getLocalStorage());
+        this.inhabitants.push(this.brastlewark.getLocalStorage());
       }
   }
   
