@@ -3,6 +3,7 @@ import { NgModule }           from '@angular/core';
 import { CommonModule }       from '@angular/common';
 
 import { BrastlewarkService }        from './services/brastlewark.service';
+import { PagerService }              from './services/pager.service';
 
 @NgModule({
   imports: [
@@ -10,7 +11,8 @@ import { BrastlewarkService }        from './services/brastlewark.service';
   ],
   declarations: [], 
   providers: [ 
-    BrastlewarkService
+    BrastlewarkService,
+    PagerService
   ]
 })
 export class SharedModule { }
