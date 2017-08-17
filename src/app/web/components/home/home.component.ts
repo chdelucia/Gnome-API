@@ -17,17 +17,14 @@ export class HomeComponent implements OnInit {
   pagedInhabitants: Brastlewark[] = [];
   filteredInhabitants: Brastlewark[] = [];
   jobs = [];
-  actualPage: number;
   pager: any = {};
   totalPages:number = 0;
   jobsActivate : boolean = false;
 
-
-  constructor(private brastlewark: BrastlewarkService, private pagerService: PagerService) {
-
-  }
+  constructor(private brastlewark: BrastlewarkService, private pagerService: PagerService) {}
 
   ngOnInit() {
+    /* remove comment for load data from Storage  to avoid delays in case real API*/
     //this.recoverDataFromStorage();
     this.getInhabitants();
   }
@@ -42,6 +39,9 @@ export class HomeComponent implements OnInit {
       })
   }
 
+  /*
+  * creates an Array with all jobs order DESC
+  */
   listJobs() {
     this.inhabitants.map(item => {
       item.professions.map(job => {
@@ -54,12 +54,16 @@ export class HomeComponent implements OnInit {
   }
 
   filterByProfession(value: string) {
+    //clear results
     this.filteredInhabitants = [];
 
+    // show all profiles
     if(value === "all"){
       this.totalPages = this.inhabitants.length
       this.jobsActivate = false;
     }
+
+    // show profiles if job match
     else{
     this.inhabitants.map(item => {
       item.professions.map(job => {
@@ -71,7 +75,6 @@ export class HomeComponent implements OnInit {
     this.totalPages = this.filteredInhabitants.length
     this.jobsActivate = true;
     }
-
     this.setPage(1);
   }
 
