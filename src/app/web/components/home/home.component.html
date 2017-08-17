@@ -1,9 +1,12 @@
-<section *ngIf="pagedInhabitants; else loading">
+<section id="inhabitants" *ngIf="pagedInhabitants; else loading">
   <div class="container">
     <!-- Page Heading -->
     <h1 class="my-4">Brastlewark
       <small>inhabitants</small>
     </h1>
+    <div class="show-pagination text-right">
+      <small>Showing page {{pager.currentPage}} of {{pager.totalPages}}</small>
+    </div>
     <div class="row">
       <div *ngFor="let inhabitant of pagedInhabitants" class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
@@ -24,22 +27,22 @@
     </div>
     <!-- /.row -->
     <!-- Pagination -->
-
+    
     <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-center">
       <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
-        <a class="page-link" (click)="setPage(1)">First</a>
+        <a href="#inhabitants" class="page-link" (click)="setPage(1)">First</a>
       </li>
       <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
-        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+        <a href="#inhabitants" class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
       </li>
       <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+        <a href="#inhabitants" class="page-link" (click)="setPage(page)">{{page}}</a>
       </li>
       <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+        <a href="#inhabitants" class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
       </li>
       <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+        <a href="#inhabitants" class="page-link" (click)="setPage(pager.totalPages)">Last</a>
       </li>
     </ul>
     <!-- /Pagination -->
