@@ -105,7 +105,6 @@ export class HomeComponent implements OnInit {
   * Optimization for bucle
   */
   trackInhabitant(index,inhabitant){
-    console.log(inhabitant);
     return inhabitant ? inhabitant.id : undefined;
   }
 
