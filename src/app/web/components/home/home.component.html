@@ -14,7 +14,7 @@
       <small class="show-bc hidden-xs">Showing page {{pager.currentPage}} of {{pager.totalPages}}</small>
     </div>
     <div class="row">
-      <div *ngFor="let inhabitant of pagedInhabitants" class="col-lg-4 col-sm-6 portfolio-item">
+      <div [@fadeIn]="''" *ngFor="let inhabitant of pagedInhabitants; trackBy: trackInhabitant" class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
           <div class="profile-img"><img class="card-img-top" src="{{inhabitant.thumbnail}}" alt=""></div>
           <div class="card-body">

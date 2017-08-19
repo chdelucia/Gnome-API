@@ -6,10 +6,20 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from './../../../../environments/environment';
 import { Brastlewark } from './../../shared/services/brastlewark';
 
+import { trigger,state,style,animate,transition} from '@angular/animations';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.less'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: '0' }),
+        animate('.5s ease', style({ opacity: '1' })),
+      ]),
+    ]),
+  ],
 })
 export class HomeComponent implements OnInit {
 
@@ -88,6 +98,15 @@ export class HomeComponent implements OnInit {
       this.setPage(1);
       this.listJobs();
     }
+  }
+
+
+  /*
+  * Optimization for bucle
+  */
+  trackInhabitant(index,inhabitant){
+    console.log(inhabitant);
+    return inhabitant ? inhabitant.id : undefined;
   }
 
   setPage(page: number) {
