@@ -2,6 +2,7 @@
 import { NgModule }                         from '@angular/core';
 import { BrowserModule }                    from '@angular/platform-browser';
 import { BrowserAnimationsModule }          from '@angular/platform-browser/animations';
+import { HttpClientModule }                 from '@angular/common/http';
 import { AppComponent }                     from './app.component';
 import { HomeComponent }                    from './web/components/home/home.component';
 import { PageNotFoundComponent }            from './web/components/page-not-found/page-not-found.component';
@@ -20,6 +21,7 @@ import { routing }                          from './app.routing';
     SharedModule,
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     SharedModuleWeb,
     routing,
   ],

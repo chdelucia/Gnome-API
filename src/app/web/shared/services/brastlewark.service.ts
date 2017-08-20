@@ -1,5 +1,6 @@
 import { Injectable, Inject }                           from '@angular/core';
 import { Http, Headers, RequestOptions, RequestMethod } from '@angular/http';
+import { HttpClient }                                   from '@angular/common/http';
 
 import { Observable }                                   from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -10,14 +11,14 @@ import { BrastlewarkObject }                            from './brastlewark';
 @Injectable()
 export class BrastlewarkService {
 
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     getInhabitants(): Observable<BrastlewarkObject> {
+        return this.http
+        .get<BrastlewarkObject>(environment.baseUrl)
+        .retry(3)
+        .map(response => this.setLocalStorage(response))
 
-        return this.http.get(environment.baseUrl)
-            .retry(3)
-            .map(response => this.setLocalStorage( response.json() ))
-            .catch(this.handleError);
     }
 
     setLocalStorage(responseJson:BrastlewarkObject) : BrastlewarkObject {
