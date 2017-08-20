@@ -1,6 +1,7 @@
 
 import { NgModule }                         from '@angular/core';
-import { BrowserModule }                    from '@angular/platform-browser';
+//import { BrowserModule }                    from '@angular/platform-browser';
+import { WorkerAppModule }                  from '@angular/platform-webworker';
 import { BrowserAnimationsModule }          from '@angular/platform-browser/animations';
 import { AppComponent }                     from './app.component';
 import { HomeComponent }                    from './web/components/home/home.component';
@@ -18,7 +19,8 @@ import { routing }                          from './app.routing';
   ],
   imports: [
     SharedModule,
-    BrowserModule,
+    //BrowserModule,
+    WorkerAppModule,
     BrowserAnimationsModule,
     SharedModuleWeb,
     routing,
