@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
   constructor(private brastlewark: BrastlewarkService, private pagerService: PagerService) {}
 
   ngOnInit() {
-    /* remove comment for load data from Storage  to avoid delays in case real API*/
+    /* remove comment for load data from Storage to avoid delays in case real API*/
     //this.recoverDataFromStorage();
     this.getInhabitants();
   }
@@ -47,46 +47,14 @@ export class HomeComponent implements OnInit {
         this.inhabitants = result.Brastlewark;
         this.totalPages = result.Brastlewark.length 
         this.setPage(1);
-        this.listJobs();
+        this.jobs = this.brastlewark.listJobs();
       })
   }
 
-  /*
-  * creates an Array with all jobs order DESC
-  */
-  listJobs() {
-    this.inhabitants.map(item => {
-      item.professions.map(job => {
-        if (!this.jobs.includes(job.trim())) {
-          this.jobs.push(job.trim())
-        }
-      })
-    })
-    this.jobs = this.jobs.sort();
-  }
 
   filterByProfession(value: string) {
-    //clear results
-    this.filteredInhabitants = [];
-
-    // show all profiles
-    if(value === "all"){
-      this.totalPages = this.inhabitants.length
-      this.filterActivate = false;
-    }
-
-    // show profiles if job match
-    else{
-    this.inhabitants.map(item => {
-      item.professions.map(job => {
-        if (job.trim() === value) {
-          this.filteredInhabitants.push(item);
-        }
-      })
-    })
-    this.totalPages = this.filteredInhabitants.length
-    this.filterActivate = true;
-    }
+    this.inhabitants = this.brastlewark.filterByProfession(value);
+    this.totalPages = this.inhabitants.length
     this.setPage(1);
   }
 
@@ -98,7 +66,7 @@ export class HomeComponent implements OnInit {
       this.inhabitants = this.brastlewark.getLocalStorage().Brastlewark;
       this.totalPages = this.inhabitants.length 
       this.setPage(1);
-      this.listJobs();
+      this.brastlewark.listJobs();
     }
   }
 
@@ -145,7 +113,7 @@ export class HomeComponent implements OnInit {
     this.pager = this.pagerService.getPager(this.totalPages, page);
 
     // get current page of items
-    this.pagedInhabitants = this.filterActivate ? this.filteredInhabitants.slice(this.pager.startIndex, this.pager.endIndex + 1) : this.inhabitants.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.pagedInhabitants = this.inhabitants.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
 
