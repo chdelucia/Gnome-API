@@ -72,6 +72,10 @@ export class BrastlewarkService {
           return filteredInhabitants;
     }
 
+    listNames(text:string) : Brastlewark[]{
+        return this.inhabitants.filter(x => x.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()));
+    }
+
 
     private handleError(error: Response) {
         console.error(error);

@@ -4,7 +4,7 @@ import { BrastlewarkService } from './../../shared/services/brastlewark.service'
 import { PagerService } from './../../shared/services/pager.service';
 import { Observable } from 'rxjs/Observable';
 import { environment } from './../../../../environments/environment';
-import { Brastlewark } from './../../shared/services/brastlewark';
+import { Brastlewark,BrastlewarkObject } from './../../shared/services/brastlewark';
 
 import { trigger,state,style,animate,transition} from '@angular/animations';
 
@@ -23,7 +23,7 @@ import { trigger,state,style,animate,transition} from '@angular/animations';
 })
 export class HomeComponent implements OnInit {
 
-  inhabitants: Brastlewark[] = [];
+  inhabitants: BrastlewarkObject;
   pagedInhabitants: Brastlewark[] = [];
   filteredInhabitants: Brastlewark[] = [];
   filteredNames : Brastlewark[] = [];
@@ -44,7 +44,8 @@ export class HomeComponent implements OnInit {
   getInhabitants() {
     this.brastlewark.getInhabitants().subscribe(
       result => {
-        this.inhabitants = result.Brastlewark;
+        this.inhabitants = result;
+        this.filteredInhabitants = result.Brastlewark;
         this.totalPages = result.Brastlewark.length 
         this.setPage(1);
         this.jobs = this.brastlewark.listJobs();
@@ -53,8 +54,8 @@ export class HomeComponent implements OnInit {
 
 
   filterByProfession(value: string) {
-    this.inhabitants = this.brastlewark.filterByProfession(value);
-    this.totalPages = this.inhabitants.length
+    this.filteredInhabitants = this.brastlewark.filterByProfession(value);
+    this.totalPages = this.filteredInhabitants.length
     this.setPage(1);
   }
 
@@ -63,19 +64,17 @@ export class HomeComponent implements OnInit {
   */
   recoverDataFromStorage() {
     if (localStorage.getItem('Brastlewark') !== null) {
-      this.inhabitants = this.brastlewark.getLocalStorage().Brastlewark;
-      this.totalPages = this.inhabitants.length 
+      this.filteredInhabitants = this.brastlewark.getLocalStorage().Brastlewark;
+      this.totalPages = this.filteredInhabitants.length 
       this.setPage(1);
       this.brastlewark.listJobs();
     }
   }
 
 
-
-  //TODO move this content to a service
   showlistOfNames(name:string){
     if (name.length >= 2){
-      this.filteredNames = this.inhabitants.filter(x => x.name.toLocaleLowerCase().includes(name.toLocaleLowerCase()));
+      this.filteredNames = this.brastlewark.listNames(name);
     }
   }
 
@@ -83,19 +82,17 @@ export class HomeComponent implements OnInit {
       this.inputNameValue = inhabitant.name;
       this.filteredNames = [];
       this.filteredInhabitants = [inhabitant];
-      this.totalPages = this.filteredInhabitants.length
-      this.filterActivate = true;
+      this.totalPages = 1;
       this.setPage(1);
   }
 
   clearFilterByName(){
     this.inputNameValue = "";
     this.filteredNames = [];
-    this.totalPages = this.inhabitants.length
-    this.filterActivate = false;
+    this.filteredInhabitants = this.inhabitants.Brastlewark;
+    this.totalPages = this.inhabitants.Brastlewark.length;
     this.setPage(1);
   }
-  //END TODO
 
   /*
   * Optimization for bucle
@@ -113,7 +110,7 @@ export class HomeComponent implements OnInit {
     this.pager = this.pagerService.getPager(this.totalPages, page);
 
     // get current page of items
-    this.pagedInhabitants = this.inhabitants.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.pagedInhabitants = this.filteredInhabitants.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
 
