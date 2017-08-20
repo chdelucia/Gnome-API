@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit {
   inputNameValue : string = "";
   pager: any = {};
   totalPages:number = 0;
-  filterActivate : boolean = false;
 
   constructor(private brastlewark: BrastlewarkService, private pagerService: PagerService) {}
 
