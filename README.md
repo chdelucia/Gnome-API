@@ -2,6 +2,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.3.
 
 This app Shows all inhabitants with a paginator and filters it by a profession.
+note : Filters are not working togethers yet. You should filter by name or filter by professions.
 
 ## Install dependencies
 Run `npm install`

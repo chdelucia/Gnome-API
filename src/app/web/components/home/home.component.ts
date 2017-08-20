@@ -26,10 +26,12 @@ export class HomeComponent implements OnInit {
   inhabitants: Brastlewark[] = [];
   pagedInhabitants: Brastlewark[] = [];
   filteredInhabitants: Brastlewark[] = [];
+  filteredNames : Brastlewark[] = [];
   jobs : string[] = [];
+  inputNameValue : string = "";
   pager: any = {};
   totalPages:number = 0;
-  jobsActivate : boolean = false;
+  filterActivate : boolean = false;
 
   constructor(private brastlewark: BrastlewarkService, private pagerService: PagerService) {}
 
@@ -70,7 +72,7 @@ export class HomeComponent implements OnInit {
     // show all profiles
     if(value === "all"){
       this.totalPages = this.inhabitants.length
-      this.jobsActivate = false;
+      this.filterActivate = false;
     }
 
     // show profiles if job match
@@ -83,7 +85,7 @@ export class HomeComponent implements OnInit {
       })
     })
     this.totalPages = this.filteredInhabitants.length
-    this.jobsActivate = true;
+    this.filterActivate = true;
     }
     this.setPage(1);
   }
@@ -101,6 +103,32 @@ export class HomeComponent implements OnInit {
   }
 
 
+
+  //TODO move this content to a service
+  showlistOfNames(name:string){
+    if (name.length >= 2){
+      this.filteredNames = this.inhabitants.filter(x => x.name.toLocaleLowerCase().includes(name.toLocaleLowerCase()));
+    }
+  }
+
+  filterByName(inhabitant:Brastlewark){
+      this.inputNameValue = inhabitant.name;
+      this.filteredNames = [];
+      this.filteredInhabitants = [inhabitant];
+      this.totalPages = this.filteredInhabitants.length
+      this.filterActivate = true;
+      this.setPage(1);
+  }
+
+  clearFilterByName(){
+    this.inputNameValue = "";
+    this.filteredNames = [];
+    this.totalPages = this.inhabitants.length
+    this.filterActivate = false;
+    this.setPage(1);
+  }
+  //END TODO
+
   /*
   * Optimization for bucle
   */
@@ -108,6 +136,7 @@ export class HomeComponent implements OnInit {
     return inhabitant ? inhabitant.id : undefined;
   }
 
+  
   setPage(page: number) {
     if (page < 1 || page > this.pager.totalPages) {
       return;
@@ -116,7 +145,7 @@ export class HomeComponent implements OnInit {
     this.pager = this.pagerService.getPager(this.totalPages, page);
 
     // get current page of items
-    this.pagedInhabitants = this.jobsActivate ? this.filteredInhabitants.slice(this.pager.startIndex, this.pager.endIndex + 1) : this.inhabitants.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.pagedInhabitants = this.filterActivate ? this.filteredInhabitants.slice(this.pager.startIndex, this.pager.endIndex + 1) : this.inhabitants.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
 
