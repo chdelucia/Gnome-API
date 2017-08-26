@@ -55,13 +55,13 @@ export class BrastlewarkService {
         return jobs.sort();
     }
 
-    filterByProfession(profession: string) : Brastlewark[]{
+    filterByProfession(profession: string, inhabitants:Brastlewark[]) : Brastlewark[]{
         let filteredInhabitants: Brastlewark[] = [];
         if(profession === "all"){
             filteredInhabitants = this.inhabitants;
         }
         else{
-        this.inhabitants.map(item => {
+        inhabitants.map(item => {
             item.professions.map(job => {
               if (job.trim() === profession) {
                 filteredInhabitants.push(item);

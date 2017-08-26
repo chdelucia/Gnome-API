@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
 
 
   filterByProfession(value: string) {
-    this.filteredInhabitants = this.brastlewark.filterByProfession(value);
+    this.filteredInhabitants = this.brastlewark.filterByProfession(value,this.inhabitants.Brastlewark);
     this.totalPages = this.filteredInhabitants.length
     this.setPage(1);
   }
@@ -71,8 +71,10 @@ export class HomeComponent implements OnInit {
   }
 
 
-  showlistOfNames(name:string){
+  showlistOfNames(name){
     if (name.length >= 2){
+      debugger;
+      console.log(this.inputNameValue)
       this.filteredNames = this.brastlewark.listNames(name);
     }
   }
