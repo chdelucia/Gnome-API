@@ -39,6 +39,7 @@ export class BrastlewarkService {
         return JSON.parse(localStorage.getItem('Brastlewark'));
     }
 
+
     /*
     * creates an Array with all jobs order DESC
     */
