@@ -52,7 +52,7 @@ export class BrastlewarkService {
                 }
             })
         })
-        return jobs.sort();;
+        return jobs.sort();
     }
 
     filterByProfession(profession: string) : Brastlewark[]{
