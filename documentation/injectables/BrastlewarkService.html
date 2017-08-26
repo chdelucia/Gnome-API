@@ -463,12 +463,12 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <code>constructor(http: HttpClient)</code>
+                                    <code>constructor(http: <a href="https://angular.io/docs/ts/latest/api/http/index/Http-class.html" target="_blank">Http</a>)</code>
                                 </td>
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:13</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:12</a></div>
                                         </td>
                                     </tr>
             
@@ -491,14 +491,14 @@
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-            <code>filterByProfession(profession: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+            <code>filterByProfession(profession: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, inhabitants: [])</code>
                                 </td>
                             </tr>
             
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:57</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:58</a></div>
                                         </td>
                                     </tr>
             
@@ -530,7 +530,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:18</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:17</a></div>
                                         </td>
                                     </tr>
             
@@ -595,7 +595,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:80</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:81</a></div>
                                         </td>
                                     </tr>
             
@@ -620,14 +620,14 @@
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-            <code>listJobs()</code>
+            <code>listJobs(inhabitants: [])</code>
                                 </td>
                             </tr>
             
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:45</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:46</a></div>
                                         </td>
                                     </tr>
             
@@ -652,14 +652,14 @@
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-            <code>listNames(text: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+            <code>listNames(text: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, inhabitants: [])</code>
                                 </td>
                             </tr>
             
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:75</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:76</a></div>
                                         </td>
                                     </tr>
             
@@ -735,7 +735,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:13</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/web/shared/services/brastlewark.service.ts:12</a></div>
                                         </td>
                                     </tr>
             
@@ -749,7 +749,6 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { Injectable, Inject } from &#x27;@angular/core&#x27;;
 import { Http, Headers, RequestOptions, RequestMethod } from &#x27;@angular/http&#x27;;
-import { HttpClient } from &#x27;@angular/common/http&#x27;;
 
 import { Observable } from &#x27;rxjs/Observable&#x27;;
 import &#x27;rxjs/Rx&#x27;;
@@ -762,13 +761,14 @@ export class BrastlewarkService {
     private inhabitants: Brastlewark[] &#x3D; [];
     
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: Http) { }
 
     getInhabitants(): Observable&lt;BrastlewarkObject&gt; {
         return this.http
-            .get&lt;BrastlewarkObject&gt;(environment.baseUrl)
+            .get(environment.baseUrl)
             .retry(3)
-            .map(response &#x3D;&gt; this.setLocalStorage(response))
+            .map(response &#x3D;&gt; this.setLocalStorage(response.json()))
+            .catch(this.handleError)
 
     }
 
@@ -788,28 +788,29 @@ export class BrastlewarkService {
         return JSON.parse(localStorage.getItem(&#x27;Brastlewark&#x27;));
     }
 
+
     /*
     * creates an Array with all jobs order DESC
     */
-    listJobs(): string[] {
+    listJobs(inhabitants:Brastlewark[]): string[] {
         let jobs: string[] &#x3D; []
-        this.inhabitants.map(item &#x3D;&gt; {
+        inhabitants.map(item &#x3D;&gt; {
             item.professions.map(job &#x3D;&gt; {
                 if (!jobs.includes(job.trim())) {
                     jobs.push(job.trim())
                 }
             })
         })
-        return jobs.sort();;
+        return jobs.sort();
     }
 
-    filterByProfession(profession: string) : Brastlewark[]{
+    filterByProfession(profession: string, inhabitants:Brastlewark[]) : Brastlewark[]{
         let filteredInhabitants: Brastlewark[] &#x3D; [];
         if(profession &#x3D;&#x3D;&#x3D; &quot;all&quot;){
             filteredInhabitants &#x3D; this.inhabitants;
         }
         else{
-        this.inhabitants.map(item &#x3D;&gt; {
+        inhabitants.map(item &#x3D;&gt; {
             item.professions.map(job &#x3D;&gt; {
               if (job.trim() &#x3D;&#x3D;&#x3D; profession) {
                 filteredInhabitants.push(item);
@@ -821,8 +822,8 @@ export class BrastlewarkService {
           return filteredInhabitants;
     }
 
-    listNames(text:string) : Brastlewark[]{
-        return this.inhabitants.filter(x &#x3D;&gt; x.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()));
+    listNames(text:string,inhabitants:Brastlewark[]) : Brastlewark[]{
+        return inhabitants.filter(x &#x3D;&gt; x.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()));
     }
 
 

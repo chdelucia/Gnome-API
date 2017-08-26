@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
       result => {
         this.inhabitants = result;
         this.filteredInhabitants = result.Brastlewark;
-        this.totalPages = result.Brastlewark.length 
+        this.totalPages = result.Brastlewark.length;
         this.setPage(1);
         this.jobs = this.brastlewark.listJobs(this.inhabitants.Brastlewark);
       })
