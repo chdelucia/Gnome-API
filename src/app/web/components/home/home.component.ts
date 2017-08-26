@@ -73,8 +73,6 @@ export class HomeComponent implements OnInit {
 
   showlistOfNames(name){
     if (name.length >= 2){
-      debugger;
-      console.log(this.inputNameValue)
       this.filteredNames = this.brastlewark.listNames(name,this.inhabitants.Brastlewark);
     }
   }
