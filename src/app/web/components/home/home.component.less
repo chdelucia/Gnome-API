@@ -27,6 +27,13 @@
 .names-filtered{
     border-left: 1px solid #d9d9d9;
     border-right: 1px solid #d9d9d9;
+    position: absolute;
+    width: 100%;
+    z-index: 8;
+    margin-bottom: 3em;
+    background: rgb(240, 238, 245);
+    max-height: 410px;
+    overflow: auto;
     &__item{
         padding: .5em;
         border-bottom: 1px solid #d9d9d9;
@@ -37,6 +44,7 @@
     }
 }
 #imaginary_container{
+    position: relative;
     margin-bottom: 1em;
 }
 .clear-filter{
