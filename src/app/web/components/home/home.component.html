@@ -7,12 +7,15 @@
     </h1>
     <div id="imaginary_container"> 
       <div class="input-group stylish-input-group">
-          <input (keyup)="showlistOfNames($event.target.value)" [value]="inputNameValue" type="text" class="form-control"  placeholder="Search by name">
+          <input (keyup)="showlistOfNames($event.target.value)" (input)="inputNameValue = $event.target.value" [value]="inputNameValue" type="text" class="form-control"  placeholder="Search by name">
           <span class="input-group-addon clear-filter" (click)="clearFilterByName()">
                   Clear
           </span>
       </div>
       <div class="names-filtered">
+          <div *ngIf="filteredNames.length" (click)="filterByName(filteredNames)" class="names-filtered__item">
+              Filter by "{{ inputNameValue }}"  {{title}}
+          </div>
           <div (click)="filterByName(filteredName)" class="names-filtered__item" *ngFor="let filteredName of filteredNames; trackBy: trackInhabitant">
             {{filteredName.name}} 
           </div>

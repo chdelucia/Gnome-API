@@ -77,11 +77,13 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  filterByName(inhabitant:Brastlewark){
-      this.inputNameValue = inhabitant.name;
+  filterByName(inhabitant){
+      if (!inhabitant.length){
+        this.inputNameValue = inhabitant.name;
+      }
       this.filteredNames = [];
-      this.filteredInhabitants = [inhabitant];
-      this.totalPages = 1;
+      this.filteredInhabitants = inhabitant.length ? inhabitant : [inhabitant];
+      this.totalPages = this.filteredInhabitants.length;
       this.setPage(1);
   }
 
