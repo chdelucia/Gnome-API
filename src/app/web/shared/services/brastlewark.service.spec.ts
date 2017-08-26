@@ -47,5 +47,12 @@ describe('Service: BrastlewarkService', () => {
     });
   });
 
+  it('should filter by name', () => {
+    let items = service.listNames("Quick",inhabitants.Brastlewark);
+    items.forEach(element => {
+      expect(element.name.includes("Quick")).toBeTruthy();
+    });
+  });
+
 
 });

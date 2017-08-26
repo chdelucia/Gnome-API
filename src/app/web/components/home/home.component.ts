@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
     if (name.length >= 2){
       debugger;
       console.log(this.inputNameValue)
-      this.filteredNames = this.brastlewark.listNames(name);
+      this.filteredNames = this.brastlewark.listNames(name,this.inhabitants.Brastlewark);
     }
   }
 
