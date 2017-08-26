@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
         this.filteredInhabitants = result.Brastlewark;
         this.totalPages = result.Brastlewark.length 
         this.setPage(1);
-        this.jobs = this.brastlewark.listJobs();
+        this.jobs = this.brastlewark.listJobs(this.inhabitants.Brastlewark);
       })
   }
 
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
       this.filteredInhabitants = this.brastlewark.getLocalStorage().Brastlewark;
       this.totalPages = this.filteredInhabitants.length 
       this.setPage(1);
-      this.brastlewark.listJobs();
+      this.brastlewark.listJobs(this.filteredInhabitants);
     }
   }
 

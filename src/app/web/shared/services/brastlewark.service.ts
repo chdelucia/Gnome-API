@@ -43,9 +43,9 @@ export class BrastlewarkService {
     /*
     * creates an Array with all jobs order DESC
     */
-    listJobs(): string[] {
+    listJobs(inhabitants:Brastlewark[]): string[] {
         let jobs: string[] = []
-        this.inhabitants.map(item => {
+        inhabitants.map(item => {
             item.professions.map(job => {
                 if (!jobs.includes(job.trim())) {
                     jobs.push(job.trim())
