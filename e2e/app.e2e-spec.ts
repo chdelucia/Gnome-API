@@ -9,6 +9,12 @@ describe('mediacoachportal App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!!');
+    expect(page.getParagraphText()).toEqual('Brastlewark inhabitants');
   });
+
+  it('should display 12 inhabitants', () => {
+    page.navigateTo();
+    expect(page.getInhabitants().count()).toEqual(12);
+  });
+
 });

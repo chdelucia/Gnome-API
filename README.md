@@ -23,6 +23,10 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test`
 
+## End to End testing
+
+Run `ng e2e`
+
 ## Generete DOC
 
 Run `npm run compodoc`
