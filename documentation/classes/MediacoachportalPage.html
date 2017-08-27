@@ -420,10 +420,16 @@
                             <td class="col-md-4">
                                 <ul class="index-list">
                                     <li>
+                                         <a href="#getInhabitants">getInhabitants</a>
+                                    </li>
+                                    <li>
                                          <a href="#getParagraphText">getParagraphText</a>
                                     </li>
                                     <li>
                                          <a href="#navigateTo">navigateTo</a>
+                                    </li>
+                                    <li>
+                                         <a href="#wait">wait</a>
                                     </li>
                                 </ul>
                             </td>
@@ -442,6 +448,38 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
+                                    <a name="getInhabitants"></a>
+                                    <b> getInhabitants</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>getInhabitants()</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">e2e/app.po.ts:15</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
                                     <a name="getParagraphText"></a>
                                     <b> getParagraphText</b>
                                 </td>
@@ -455,7 +493,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">e2e/app.po.ts:8</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">e2e/app.po.ts:11</a></div>
                                         </td>
                                     </tr>
             
@@ -502,6 +540,38 @@
                             </tr>
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="wait"></a>
+                                    <b> wait</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>wait(time: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">e2e/app.po.ts:8</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
             </section>
 
 
@@ -516,8 +586,15 @@ export class MediacoachportalPage {
     return browser.get(&#x27;/&#x27;);
   }
 
+  wait(time:number){
+    browser.manage().timeouts().implicitlyWait(time);
+  }
   getParagraphText() {
     return element(by.css(&#x27;app-root h1&#x27;)).getText();
+  }
+
+  getInhabitants(){
+    return element.all(by.className(&#x27;portfolio-item&#x27;));
   }
 }
 </code></pre>
