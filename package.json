@@ -44,7 +44,7 @@
     "@compodoc/compodoc": "^1.0.0-beta.14",
     "@types/jasmine": "2.5.45",
     "@types/node": "^20.1.5",
-    "codelyzer": "~3.0.1",
+    "codelyzer": "~6.0.2",
     "jasmine-core": "~5.0.0",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
