@@ -21,7 +21,7 @@
     "@angular/compiler": "16.0.1",
     "@angular/core": "16.0.1",
     "@angular/forms": "16.0.1",
-    "@angular/http": "4.2.4",
+    "@angular/http": "7.2.16",
     "@angular/material": "^16.0.1",
     "@angular/platform-browser": "16.0.1",
     "@angular/platform-browser-dynamic": "4.2.4",
