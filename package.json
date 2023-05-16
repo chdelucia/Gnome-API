@@ -46,7 +46,7 @@
     "@types/node": "^20.1.5",
     "codelyzer": "~6.0.2",
     "jasmine-core": "~5.0.0",
-    "jasmine-spec-reporter": "~4.1.0",
+    "jasmine-spec-reporter": "~7.0.0",
     "karma": "~1.7.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-cli": "~1.0.1",
