@@ -18,7 +18,7 @@
     "@angular/animations": "4.2.4",
     "@angular/cdk": "^2.0.0-beta.8",
     "@angular/common": "4.2.4",
-    "@angular/compiler": "4.2.4",
+    "@angular/compiler": "16.0.1",
     "@angular/core": "16.0.1",
     "@angular/forms": "16.0.1",
     "@angular/http": "4.2.4",
