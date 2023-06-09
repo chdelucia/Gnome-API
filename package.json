@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@angular/cli": "16.0.1",
-    "@angular/compiler-cli": "16.0.1",
+    "@angular/compiler-cli": "16.0.5",
     "@angular/language-service": "^16.0.1",
     "@compodoc/compodoc": "^1.0.0-beta.14",
     "@types/jasmine": "4.3.1",
